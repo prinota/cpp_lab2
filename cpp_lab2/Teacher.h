@@ -1,6 +1,8 @@
 #ifndef TEACHER_H
 #define TEACHER_H
 
+#include <string>
+#include <vector>
 #include "Equation.h"
 #include "Student.h"
 
@@ -9,19 +11,17 @@ struct Letter {
     QuadraticEquation eq;
     Roots answer;
     Student* sender;
-    Letter* next;
-    Letter(const QuadraticEquation& e, const Roots& a, Student* s);
+    Letter(const QuadraticEquation& e, const Roots& a, Student* s)
+        : eq(e), answer(a), sender(s) {
+    }
 };
 
 class LetterQueue {
 private:
-    Letter* head;
-    Letter* tail;
+    std::vector<Letter> letters;
 public:
-    LetterQueue();
-    ~LetterQueue();
     void push(const QuadraticEquation& eq, const Roots& ans, Student* sender);
-    Letter* pop();
+    Letter pop();
     bool empty() const;
 };
 
@@ -33,9 +33,7 @@ struct GradeRecord {
 
 class Gradebook {
 private:
-    static const int MAX_STUDENTS = 100;
-    GradeRecord records[MAX_STUDENTS];
-    int size;
+    std::vector<GradeRecord> records;
     int findStudent(const std::string& name) const;
 public:
     Gradebook();
@@ -49,7 +47,7 @@ private:
     LetterQueue inbox;
     Gradebook gradebook;
 public:
-    void receiveLetter(const QuadraticEquation& eq, const Roots& ans, Student* sender);
+    void receiveLetter(const QuadraticEquation& eq, const Roots& ans, Student* sender); 
     void checkAllWorks();
     void publishResults() const;
 };

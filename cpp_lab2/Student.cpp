@@ -38,6 +38,12 @@ StudentAvg::StudentAvg(const std::string& n, double prob)
 }
 
 Roots StudentAvg::solveTask(const QuadraticEquation& eq) {
+    static bool initialized = false;
+    if (!initialized) {
+        srand(time(0));
+        initialized = true;
+    }
+
     double chance = static_cast<double>(std::rand()) / RAND_MAX;
 
     if (chance < correctProbability) {

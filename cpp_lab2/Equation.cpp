@@ -21,7 +21,6 @@ QuadraticEquation::QuadraticEquation(double a_, double b_, double c_)
 }
 
 Roots QuadraticEquation::solve() const {
-    const double EPS = 1e-9;
 
     if (std::fabs(a) < EPS) {
         if (std::fabs(b) < EPS) {
@@ -50,7 +49,6 @@ Roots QuadraticEquation::solve() const {
 }
 
 bool QuadraticEquation::checkAnswer(const Roots& answer) const {
-    const double EPS = 1e-6;
 
     Roots correct = solve();
 

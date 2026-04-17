@@ -1,6 +1,8 @@
 #ifndef EQUATION_H
 #define EQUATION_H
 
+const double EPS = 1e-9;
+
 struct Roots {
     int count;
     double x1, x2;
